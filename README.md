@@ -29,8 +29,10 @@ Todo reporte definido estaria compuesto de 3 archivos:
 Los archivos FRX y FRT almacenarian el formato del reporte, mientras que el archivo CFG almacenaria la configuracion del mismos. Este archivo CFG seria un archivo XML con la siguiente estructura:
 
     <?xml version="1.0">
-    <report name="" dstype="" caption="">
-        <datasource id="">
+    <report id="" dstype="">
+        <title></title>
+        <description></description>
+        <datasource connId="">
           <query></query>
         </datasource>
     </report
@@ -110,3 +112,75 @@ En este caso el reporte sera enviado directamente a la impresora por omision sin
 
     foxreports run reporte -print -printer=Nombre de la impresora
     
+    
+## INTERFAZ ACTIVEX
+Ademas de la interfaz de via de comando, foxreports tambien podria ser manejado usando una clase ActiveX en lenguajes que asi lo permitan.  Para esto, foxreports expondria las siguientes clases:
+
+|clase|proposito|
+|-----|---------|
+|foxreports.engine|Clase principal de foxreports. La mayoria de los metodos estarian expuestos aqui|
+|foxreports.report|Representa a un reporte|
+|foxreports.connection|Representa una conexion de datos|
+|foxReports.options|Opciones para ejecutar o exportar reportes|
+
+### foxreports.engine
+Seria la clase principal, encargada de registrar y procesar reportes
+
+|miembro|descripcion|
+|-------|-----------|
+|version|Version actual de FoxReports|
+|reports[]|Coleccion de reportes definidos|
+|connections[]|Coleccion de conexiones definidas|
+|bool addReport()|Añadir o actualizar una definicion de reporte|
+|report getReport(id)|Devuelve un objeto foxreports.report con los datos de un reporte|
+|report newReport()|Devuelve un objeto foxreports.report vacio|
+|bool dropReport(id)|Elimina un reporte definido|
+|bool run(id[,options])|Ejecuta un reporte dado|
+|bool export(id[,options])|Exporta un reporte dado|
+
+
+### foxreports.report
+Define los datos de un reporte definido:
+
+|miembro|descripcion|
+|-------|-----------|
+|id|ID interno del reporte|
+|description|Descripcion del reporte|
+|Title|Titulo del reporte
+|connId|ID de conexion a utilizar|
+|parameters[]|Parameteros del reporte|
+|datasource|Fuente de datos del reporte [1]|
+
+
+### foxreports.connection
+Define los datos de una conexion de datos reutiliable:
+
+|miembro|descripcion|
+|-------|-----------|
+|id|Id de la conexion|
+|description|Descripcion de la conexion|
+|type|sql, fox|
+|connstr|Cadena de conexion [2]|
+|bool test()|Probar la conexion|
+
+
+### foxreports.options
+Opciones a utilizar en los metodos RUN y EXPORT:
+
+|miembro|descripcion|
+|-------|-----------|
+|format|Formato de exportacion (PDF o DS)|
+|print|Indica si el reporte sera enviado directamente a la impresora|
+|printer|Indica el nombre de la impresora a utilizar|
+|pages|Paginas a imprimir [3]|
+|filter|Filtro a aplicar a los datos a imprimir|
+
+[^1]: Para conexiones SQL debe ser el SELECT a ejecutar; para conexiones FOX es un script a ejecutar, que puede ser un SELECT INTO CURSOR o una serie de comandos USE y SET RELATION TO.
+[^2]: Para conexiones SQL debe ser "Drver={driver ODBC};parametros". Para conexiones con DBF debe ser c:\ruta\carpeta\contenedor.dbc o c:\ruta\carpeta
+[^3]: 
+|pages|resultado|
+|-----|---------|
+|0|Imprimir todas las paginas|
+|n|Imprimir la pagina n|
+|n,m|Imprimir las paginas n y m|
+|n-m|Imprimir desde la pagina n a la pagina m|
