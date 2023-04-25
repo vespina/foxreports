@@ -9,6 +9,7 @@ La solucion estaria compuesta de un EXE principal llamado FOXREPORTS.EXE el cual
 
 |Comando|Accion|
 |-------|------|
+|foxreports|Mostrar la UI principal para administracion de reportes|
 |foxreports version|Mostrar la version actual de FoxReports|
 |foxreports run reporte [-p=parametros] [-print] [-printer=impresora]|Ejecutar el reporte indicado en el parametro "reporte"|
 |foxreports edit reporte|Crear/modificar un reporte con el nombre indicado en el parametro "reporte"|
@@ -172,15 +173,20 @@ Opciones a utilizar en los metodos RUN y EXPORT:
 |```format```|Formato de exportacion (PDF o DS)|
 |```print```|Indica si el reporte sera enviado directamente a la impresora|
 |```printer```|Indica el nombre de la impresora a utilizar|
-|```pages```|Paginas a imprimir [^3]|
+|```pages```|Paginas a imprimir|
 |```filter```|Filtro a aplicar a los datos a imprimir|
 
-[^1]: Para conexiones SQL debe ser el SELECT a ejecutar; para conexiones FOX es un script a ejecutar, que puede ser un SELECT INTO CURSOR o una serie de comandos USE y SET RELATION TO.
-[^2]: Para conexiones SQL debe ser "Drver={driver ODBC};parametros". Para conexiones con DBF debe ser c:\ruta\carpeta\contenedor.dbc o c:\ruta\carpeta
-[^3]: 
+El parametro ```pages``` puede contener los siguientes valores:
+
 |pages|resultado|
 |-----|---------|
 |```all```|Imprimir todas las paginas|
 |```n```|Imprimir la pagina n|
 |```n,m```|Imprimir las paginas n y m|
 |```n-m```|Imprimir desde la pagina n a la pagina m|
+
+
+[^1]: Para conexiones SQL debe ser el SELECT a ejecutar; para conexiones FOX es un script a ejecutar, que puede ser un SELECT INTO CURSOR o una serie de comandos USE y SET RELATION TO.
+[^2]: Para conexiones SQL debe ser "Drver={driver ODBC};parametros". Para conexiones con DBF debe ser c:\ruta\carpeta\contenedor.dbc o c:\ruta\carpeta
+
+
