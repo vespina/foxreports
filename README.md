@@ -197,10 +197,10 @@ El parametro ```pages``` puede contener los siguientes valores:
     }
     
     // EJECUTAR UN REPORTE CON PARAMETROS E IMPRIMIR AUTOMATICAMENTE
-    public void runReporteClientes() {
+    public void runReporteClientes(string status) {
         foxreports.engine foxreports = new foxreports.engine();
         foxreports.report clientes = foxreports.getReport("clientes");
-        clientes.setParameter("status","ACTIVO");
+        clientes.setParameter("status",status);
         clientes.options.print = true;
         bool result = foxreports.run(clientes);
     }    
