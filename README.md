@@ -9,15 +9,15 @@ La solucion estaria compuesta de un EXE principal llamado FOXREPORTS.EXE el cual
 
 |Comando|Accion|
 |-------|------|
-|foxreports|Mostrar la UI principal para administracion de reportes|
-|foxreports version|Mostrar la version actual de FoxReports|
-|foxreports run reporte [-p=parametros] [-print] [-printer=impresora]|Ejecutar el reporte indicado en el parametro "reporte"|
-|foxreports edit reporte|Crear/modificar un reporte con el nombre indicado en el parametro "reporte"|
-|foxreports export reporte -pdf destino.pdf |Exportar el reporte "reporte" en formato PDF y almacenarlo en el archivo "destino.pdf"|
-|foxreports expopr reporte -ds destino.dbf|Exportar la fuente de datos del reporte "reporte" en el archivo "destino.dbf"|
-|foxreports config|Mostrar el dialogo de configuracion general de foxreports|
-|foxreports set config value|Cambiar el valor de una configuracion especifica de foxreports|
-|foxreports connection add -id=id -p=parametros|Define o actualiza una conexion de datos|
+|```foxreports```|Mostrar la UI principal para administracion de reportes|
+|```foxreports version```|Mostrar la version actual de FoxReports|
+|```foxreports run reporte [-p=parametros] [-print] [-printer=impresora]```|Ejecutar el reporte indicado en el parametro "reporte"|
+|```foxreports edit reporte```|Crear/modificar un reporte con el nombre indicado en el parametro "reporte"|
+|```foxreports export reporte -pdf destino.pdf```|Exportar el reporte "reporte" en formato PDF y almacenarlo en el archivo "destino.pdf"|
+|```foxreports expopr reporte -ds destino.dbf```|Exportar la fuente de datos del reporte "reporte" en el archivo "destino.dbf"|
+|```foxreports config```|Mostrar el dialogo de configuracion general de foxreports|
+|```foxreports set config value```|Cambiar el valor de una configuracion especifica de foxreports|
+|```foxreports connection add -id=id -p=parametros```|Define o actualiza una conexion de datos|
 
 
 ## COMPOSICION DE UN REPORTE
