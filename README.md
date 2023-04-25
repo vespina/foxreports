@@ -135,8 +135,8 @@ Seria la clase principal, encargada de registrar y procesar reportes
 |```report getReport(id)```|Devuelve un objeto foxreports.report con los datos de un reporte|
 |```report newReport()```|Devuelve un objeto foxreports.report vacio|
 |```bool dropReport(id)```|Elimina un reporte definido|
-|bool run(id[,options])|Ejecuta un reporte dado|
-|bool export(id[,options])|Exporta un reporte dado|
+|```bool run(id[,options])```|Ejecuta un reporte dado|
+|```bool export(id[,options]```)|Exporta un reporte dado|
 
 
 ### foxreports.report
@@ -144,12 +144,12 @@ Define los datos de un reporte definido:
 
 |miembro|descripcion|
 |-------|-----------|
-|id|ID interno del reporte|
-|description|Descripcion del reporte|
-|Title|Titulo del reporte
-|connId|ID de conexion a utilizar|
-|parameters[]|Parameteros del reporte|
-|datasource|Fuente de datos del reporte [^1]|
+|```id```|ID interno del reporte|
+|```description```|Descripcion del reporte|
+|```Title```|Titulo del reporte
+|```connId```|ID de conexion a utilizar|
+|```parameters[]```|Parameteros del reporte|
+|```datasource```|Fuente de datos del reporte [^1]|
 
 
 ### foxreports.connection
@@ -157,11 +157,11 @@ Define los datos de una conexion de datos reutiliable:
 
 |miembro|descripcion|
 |-------|-----------|
-|id|Id de la conexion|
-|description|Descripcion de la conexion|
-|type|sql, fox|
-|connstr|Cadena de conexion [^2]|
-|bool test()|Probar la conexion|
+|```id```|Id de la conexion|
+|```description```|Descripcion de la conexion|
+|```type```|sql, fox|
+|```connstr```|Cadena de conexion [^2]|
+|```bool test()```|Probar la conexion|
 
 
 ### foxreports.options
@@ -169,18 +169,18 @@ Opciones a utilizar en los metodos RUN y EXPORT:
 
 |miembro|descripcion|
 |-------|-----------|
-|format|Formato de exportacion (PDF o DS)|
-|print|Indica si el reporte sera enviado directamente a la impresora|
-|printer|Indica el nombre de la impresora a utilizar|
-|pages|Paginas a imprimir [^3]|
-|filter|Filtro a aplicar a los datos a imprimir|
+|```format```|Formato de exportacion (PDF o DS)|
+|```print```|Indica si el reporte sera enviado directamente a la impresora|
+|```printer```|Indica el nombre de la impresora a utilizar|
+|```pages```|Paginas a imprimir [^3]|
+|```filter```|Filtro a aplicar a los datos a imprimir|
 
 [^1]: Para conexiones SQL debe ser el SELECT a ejecutar; para conexiones FOX es un script a ejecutar, que puede ser un SELECT INTO CURSOR o una serie de comandos USE y SET RELATION TO.
 [^2]: Para conexiones SQL debe ser "Drver={driver ODBC};parametros". Para conexiones con DBF debe ser c:\ruta\carpeta\contenedor.dbc o c:\ruta\carpeta
 [^3]: 
 |pages|resultado|
 |-----|---------|
-|0|Imprimir todas las paginas|
-|n|Imprimir la pagina n|
-|n,m|Imprimir las paginas n y m|
-|n-m|Imprimir desde la pagina n a la pagina m|
+|```all```|Imprimir todas las paginas|
+|```n```|Imprimir la pagina n|
+|```n,m```|Imprimir las paginas n y m|
+|```n-m```|Imprimir desde la pagina n a la pagina m|
