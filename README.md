@@ -132,11 +132,10 @@ Seria la clase principal, encargada de registrar y procesar reportes
 |```version```|Version actual de FoxReports|
 |```reports[]```|Coleccion de reportes definidos|
 |```connections[]```|Coleccion de conexiones definidas|
-|```bool addReport()```|Añadir o actualizar una definicion de reporte|
-|```report getReport(id)```|Devuelve un objeto foxreports.report con los datos de un reporte|
-|```report newReport()```|Devuelve un objeto foxreports.report vacio|
-|```bool dropReport(id)```|Elimina un reporte definido|
-|```bool run(id[,options])```|Ejecuta un reporte dado|
+|```lasterror```]Descripcion del ultimo error ocurrido|
+|```object get(id)```|Devuelve los datos de un reporte|
+|```bool run(id[,options])```|Ejecuta un reporte dado (sin parametros)|
+|```bool run(report)```|Ejecuta el reporte indicado|
 |```bool export(id[,options]```)|Exporta un reporte dado|
 
 
@@ -151,7 +150,8 @@ Define los datos de un reporte definido:
 |```connId```|ID de conexion a utilizar|
 |```parameters[]```|Parameteros del reporte|
 |```datasource```|Fuente de datos del reporte [^1]|
-
+|```options```|Opciones del reporte|
+|```void setParameter(param,value)|Establecer el valor de un parametro|
 
 ### foxreports.connection
 Define los datos de una conexion de datos reutiliable:
@@ -184,6 +184,26 @@ El parametro ```pages``` puede contener los siguientes valores:
 |```n```|Imprimir la pagina n|
 |```n,m```|Imprimir las paginas n y m|
 |```n-m```|Imprimir desde la pagina n a la pagina m|
+
+
+### EJEMPLO DE USO DE LA INTERFFAZ ACTIVEX (CON C#)
+
+    
+    // EJECUTAR UN REPORTE SIN PARAMETROS CON INTERFAZ VISUAL
+    public void runReporteClientes() {
+        foxreports.engine foxreports = new foxreports.engine();
+        foxreports.options options = new foxreports.options();
+        bool result = foxreports.run("clientes",options);
+    }
+    
+    // EJECUTAR UN REPORTE CON PARAMETROS E IMPRIMIR AUTOMATICAMENTE
+    public void runReporteClientes() {
+        foxreports.engine foxreports = new foxreports.engine();
+        foxreports.report clientes = foxreports.getReport("clientes");
+        clientes.setParameter("status","ACTIVO");
+        clientes.options.print = true;
+        bool result = foxreports.run(clientes);
+    }    
 
 
 [^1]: Para conexiones SQL debe ser el SELECT a ejecutar; para conexiones FOX es un script a ejecutar, que puede ser un SELECT INTO CURSOR o una serie de comandos USE y SET RELATION TO.
